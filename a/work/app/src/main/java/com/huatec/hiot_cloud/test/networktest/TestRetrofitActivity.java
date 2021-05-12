@@ -47,7 +47,7 @@ public class TestRetrofitActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               login2("hzx", "abc123", "app");
+               login2("lct", "abc123", "app");
             }
         });
 
