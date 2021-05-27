@@ -20,6 +20,10 @@ import com.huatec.hiot_cloud.utils.ValidatorUtils;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * 登录模块活动类
  */
@@ -27,31 +31,40 @@ import javax.inject.Inject;
 public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implements LoginView{
     @Inject
     LoginPresenter presenter;
-    private TextInputEditText tiptetEmail;
-    private TextInputEditText tiptetPassword;
+
+    @BindView(R.id.tiptet_email)
+    TextInputEditText tiptetEmail;
+
+    @BindView(R.id.tiptet_password)
+    TextInputEditText tiptetPassword;
+
+    @BindView(R.id.btn_login)
+    Button btnLogin;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
 
-        tiptetEmail = findViewById(R.id.tiptet_email);
-        tiptetPassword = findViewById(R.id.tiptet_password);
-        Button btnLogin = findViewById(R.id.btn_login);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //如果校验成功，则保存登录状态，跳转到列表界面
-                String email = tiptetEmail.getText().toString();
-                String password = tiptetPassword.getText().toString();
-                if (ValidateSucc(email, password)){
-                    //请求服务端身份验证
-                    LoadingUtil.showLoading(LoginActivity.this, "正在登陆...");
-                    presenter.login(email, password);
-                }
-            }
-        });
+        //tiptetEmail = findViewById(R.id.tiptet_email);
+       // tiptetPassword = findViewById(R.id.tiptet_password);
+       // Button btnLogin = findViewById(R.id.btn_login);
+       // btnLogin.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View v) {
+         //       //如果校验成功，则保存登录状态，跳转到列表界面
+         //       String email = tiptetEmail.getText().toString();
+         //       String password = tiptetPassword.getText().toString();
+        //        if (ValidateSucc(email, password)){
+         //           //请求服务端身份验证
+        //            LoadingUtil.showLoading(LoginActivity.this, "正在登陆...");
+         //           presenter.login(email, password);
+         //       }
+        //    }
+        //});
     }
 
     @Override
@@ -103,6 +116,19 @@ public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implem
         //
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
+    }
+
+    @OnClick(R.id.btn_login)
+    public void onClick(View view){
+        //如果校验成功，则保存登录状态，跳转到列表界面
+        String email = tiptetEmail.getText().toString();
+        String password = tiptetPassword.getText().toString();
+        if (ValidateSucc(email, password)){
+            //请求服务端身份验证
+            LoadingUtil.showLoading(LoginActivity.this, "正在登陆...");
+            presenter.login(email, password);
+        }
 
     }
 }
