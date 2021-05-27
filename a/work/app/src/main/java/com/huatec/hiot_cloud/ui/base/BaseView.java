@@ -5,4 +5,10 @@ package com.huatec.hiot_cloud.ui.base;
  */
 public interface BaseView {
 
+    /**
+     *吐司信息
+     * @param 登陆成功
+     */
+
+    void showMessage(String 登陆成功);
 }

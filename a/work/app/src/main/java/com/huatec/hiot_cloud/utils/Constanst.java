@@ -3,7 +3,7 @@ package com.huatec.hiot_cloud.utils;
 /**
  * 常量类
  */
-public class Constans {
+public class Constanst {
 
     /**
      *

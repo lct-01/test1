@@ -20,14 +20,10 @@ public class TestNetworkPresenter extends BasePresenter<TestNetworkPackActivity>
         subscribe(dataManager.login(userName, password), new RequestCallback<ResultBase<LoginResultDTO>>() {
             @Override
             public void onNext(ResultBase<LoginResultDTO> resultBase) {
-
                 if (resultBase != null && resultBase.getData() != null) {
                     getView().showToken(resultBase.data.getTokenValue());
-
                 } else if (resultBase != null && !TextUtils.isEmpty(resultBase.getMsg())) {
                     getView().showMessage(resultBase.getMsg());
-
-
                 }
 
             }
