@@ -15,6 +15,7 @@ import com.huatec.hiot_cloud.R;
 import com.huatec.hiot_cloud.ui.base.BaseActivity;
 import com.huatec.hiot_cloud.ui.main.MainActivity;
 
+import com.huatec.hiot_cloud.utils.LoadingUtil;
 import com.huatec.hiot_cloud.utils.ValidatorUtils;
 
 import javax.inject.Inject;
@@ -46,6 +47,7 @@ public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implem
                 String password = tiptetPassword.getText().toString();
                 if (ValidateSucc(email, password)){
                     //请求服务端身份验证
+                    LoadingUtil.showLoading(LoginActivity.this, "正在登陆...");
                     presenter.login(email, password);
                 }
             }

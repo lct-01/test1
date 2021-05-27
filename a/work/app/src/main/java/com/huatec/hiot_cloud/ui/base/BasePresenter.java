@@ -2,6 +2,8 @@ package com.huatec.hiot_cloud.ui.base;
 
 import android.util.Log;
 
+import com.huatec.hiot_cloud.utils.LoadingUtil;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -84,13 +86,16 @@ public class BasePresenter<V extends BaseView> {
 
 
         public void onError(Throwable e) {
+            //对话框隐藏
+            LoadingUtil.hideLoading();
             Log.e(TAG, "onError: ", e);
 
         }
 
 
         public void onComplete() {
-
+            //对话框隐藏
+            LoadingUtil.hideLoading();
         }
     }
 

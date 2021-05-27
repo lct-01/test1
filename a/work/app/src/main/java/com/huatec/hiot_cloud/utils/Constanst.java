@@ -30,12 +30,15 @@ public class Constanst {
      */
     public static final int MIAN_VIEWPAGER_INDEX_MINE = 3;
     /**
-     * APP登录的logincode
+     * APP登录的loginCode
      */
     public static final String LOGIN_CODE_APP = "app";
+    /**
+     *APP的注册用户类型
+     */
     public static final String REGISTER_TYPE_NORMAL = "1";
     /**
-     *
+     * 服务端返回消息状态属性
      */
-
+    public static final int MSG_STATUS_SUCCESS = 1;
 }

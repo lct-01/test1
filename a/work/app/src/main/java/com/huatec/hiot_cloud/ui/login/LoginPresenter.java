@@ -8,6 +8,7 @@ import com.huatec.hiot_cloud.data.DataManager;
 import com.huatec.hiot_cloud.test.networktest.LoginResultDTO;
 import com.huatec.hiot_cloud.test.networktest.ResultBase;
 import com.huatec.hiot_cloud.ui.base.BasePresenter;
+import com.huatec.hiot_cloud.utils.Constanst;
 
 import javax.inject.Inject;
 
@@ -32,7 +33,7 @@ class LoginPresenter extends BasePresenter<LoginView> {
         subscribe(dataManager.login(email, password), new RequestCallback<ResultBase<LoginResultDTO>>() {
             @Override
             public void onNext(ResultBase<LoginResultDTO> resultBase) {
-                if (resultBase.getStatus() == 1) {
+                if (resultBase.getStatus() == Constanst.MSG_STATUS_SUCCESS) {
                     //如给登录身份正确
                     if (resultBase != null && resultBase.getData() != null) {
                         //弹出登录成功
