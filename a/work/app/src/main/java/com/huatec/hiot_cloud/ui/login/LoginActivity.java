@@ -1,20 +1,17 @@
 package com.huatec.hiot_cloud.ui.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.huatec.hiot_cloud.R;
 import com.huatec.hiot_cloud.ui.base.BaseActivity;
 import com.huatec.hiot_cloud.ui.main.MainActivity;
-
+import com.huatec.hiot_cloud.ui.register.RegisterActivity;
 import com.huatec.hiot_cloud.utils.LoadingUtil;
 import com.huatec.hiot_cloud.utils.ValidatorUtils;
 
@@ -23,7 +20,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
 /**
  * 登录模块活动类
  */
@@ -40,6 +36,12 @@ public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implem
 
     @BindView(R.id.btn_login)
     Button btnLogin;
+
+    /**
+     * 注册
+     */
+    @BindView(R.id.tv_link_signup)
+    TextView tvLinkSignup;
 
 
 
@@ -75,7 +77,6 @@ public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implem
     @Override
     public void injectIndependies() {
         getActivityComponent().inject(this);
-
     }
 
     /**
@@ -113,22 +114,28 @@ public class LoginActivity extends BaseActivity<LoginView,LoginPresenter> implem
 
     @Override
     public void loginSucc() {
-        //
+        //跳转到主界面
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-
+        finish();
     }
 
     @OnClick(R.id.btn_login)
-    public void onClick(View view){
+    public void onClick(View view) {
         //如果校验成功，则保存登录状态，跳转到列表界面
         String email = tiptetEmail.getText().toString();
         String password = tiptetPassword.getText().toString();
-        if (ValidateSucc(email, password)){
+        if (ValidateSucc(email, password)) {
             //请求服务端身份验证
-            LoadingUtil.showLoading(LoginActivity.this, "正在登陆...");
+            LoadingUtil.showLoading(LoginActivity.this, "正在登录...");
             presenter.login(email, password);
         }
+    }
 
+    @OnClick(R.id.tv_link_signup)
+    public void onViewClicked() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

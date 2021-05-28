@@ -12,6 +12,8 @@ import com.huatec.hiot_cloud.utils.Constanst;
 
 import javax.inject.Inject;
 
+import butterknife.internal.Constants;
+
 /**
  * 登录模块presenter类
  */
@@ -53,7 +55,7 @@ class LoginPresenter extends BasePresenter<LoginView> {
             @Override
             public void onError(Throwable e){
                 super.onError(e);
-                getView().showMessage("当前网络无法访问,请稍后再试");
+                getView().showMessage(Constanst.TOAST_MSG_NETWORK_FALL);
             }
         });
     }
