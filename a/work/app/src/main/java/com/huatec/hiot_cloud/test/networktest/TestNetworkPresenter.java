@@ -17,7 +17,7 @@ public class TestNetworkPresenter extends BasePresenter<TestNetworkPackActivity>
     }
 
     public void login(String userName, String password) {
-        subscribe(dataManager.login(userName, password), new RequestCallback<ResultBase<LoginResultDTO>>() {
+        subscrib(dataManager.login(userName, password), new RequestCallback<ResultBase<LoginResultDTO>>() {
             @Override
             public void onNext(ResultBase<LoginResultDTO> resultBase) {
                 if (resultBase != null && resultBase.getData() != null) {
@@ -35,7 +35,7 @@ public class TestNetworkPresenter extends BasePresenter<TestNetworkPackActivity>
      * @param authorization
      */
     public void getUserInfo(String authorization){
-        subscribe(dataManager.getUserInfo(authorization), new RequestCallback<ResultBase<UserBean>>() {
+        subscrib(dataManager.getUserInfo(), new RequestCallback<ResultBase<UserBean>>() {
             @Override
             public void onNext(ResultBase<UserBean> resultBase) {
                 if (resultBase != null && resultBase.getData() != null){
@@ -58,7 +58,7 @@ public class TestNetworkPresenter extends BasePresenter<TestNetworkPackActivity>
      * @param email
      */
     public void updateEmail(String authorization, String email){
-        subscribe(dataManager.updateEmail(authorization, email), new RequestCallback<ResultBase<String>>() {
+        subscrib(dataManager.updateEmail(email), new RequestCallback<ResultBase<String>>() {
             @Override
             public void onNext(ResultBase<String> resultBase) {
                 if (resultBase != null && !TextUtils.isEmpty(resultBase.getData())) {
@@ -85,7 +85,7 @@ public class TestNetworkPresenter extends BasePresenter<TestNetworkPackActivity>
      * @param email
      */
     public void register(String userName, String password, String email){
-        subscribe(dataManager.register(userName, password, email), new RequestCallback<ResultBase<UserBean>>() {
+        subscrib(dataManager.register(userName, password, email), new RequestCallback<ResultBase<UserBean>>() {
             @Override
             public void onNext(ResultBase<UserBean> resultBase) {
                 if (resultBase != null && resultBase.getData() != null){

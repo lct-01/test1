@@ -7,8 +7,8 @@ public interface BaseView {
 
     /**
      *吐司信息
-     * @param 登陆成功
+     * @param message
      */
 
-    void showMessage(String 登陆成功);
+    void showMessage(String message);
 }

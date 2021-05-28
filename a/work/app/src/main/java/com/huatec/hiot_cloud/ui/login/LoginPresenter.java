@@ -32,14 +32,14 @@ class LoginPresenter extends BasePresenter<LoginView> {
      * @param password
      */
     public void login(String email, String password) {
-        subscribe(dataManager.login(email, password), new RequestCallback<ResultBase<LoginResultDTO>>() {
+        subscrib(dataManager.login(email, password), new RequestCallback<ResultBase<LoginResultDTO>>() {
             @Override
             public void onNext(ResultBase<LoginResultDTO> resultBase) {
                 if (resultBase.getStatus() == Constanst.MSG_STATUS_SUCCESS) {
                     //如给登录身份正确
                     if (resultBase != null && resultBase.getData() != null) {
                         //弹出登录成功
-                        getView().showMessage("登陆成功");
+                        getView().showMessage("登录成功");
 
                         //跳转到主页面
                         getView().loginSucc();

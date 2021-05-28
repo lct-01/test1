@@ -35,7 +35,7 @@ class RegisterPresenter extends BasePresenter<RegisterView> {
      * @param email
      */
     public void register(String userName, String password, String email) {
-        subscribe(dataManager.register(userName, password, email), new RequestCallback<ResultBase<UserBean>>() {
+        subscrib(dataManager.register(userName, password, email), new RequestCallback<ResultBase<UserBean>>() {
             @Override
             public void onNext(ResultBase<UserBean> resultBase) {
                 if (resultBase.getStatus() == Constanst.MSG_STATUS_SUCCESS) {
@@ -71,7 +71,7 @@ class RegisterPresenter extends BasePresenter<RegisterView> {
      * @param password
      */
     public void login(String email, String password) {
-        subscribe(dataManager.login(email, password), new RequestCallback<ResultBase<LoginResultDTO>>() {
+        subscrib(dataManager.login(email, password), new RequestCallback<ResultBase<LoginResultDTO>>() {
             @Override
             public void onNext(ResultBase<LoginResultDTO> resultBase) {
                 if (resultBase.getStatus() == Constanst.MSG_STATUS_SUCCESS) {
@@ -90,6 +90,7 @@ class RegisterPresenter extends BasePresenter<RegisterView> {
                     }
                 }
             }
+
 
             @Override
             public void onError(Throwable e) {

@@ -34,10 +34,10 @@ public class BasePresenter<V extends BaseView> {
     }
 
     public boolean viewAttached(){
-        return  view != null;
+        return view != null;
     }
 
-    public <T> void subscribe(Observable<T> observable, final RequestCallback<T> callback){
+    public <T> void subscrib(Observable<T> observable, final RequestCallback<T> callback) {
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
@@ -45,59 +45,49 @@ public class BasePresenter<V extends BaseView> {
                     @Override
                     public void onSubscribe(Disposable d) {
                         callback.onSubscribe(d);
-
                     }
 
                     @Override
                     public void onNext(T t) {
                         callback.onNext(t);
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         callback.onError(e);
-
                     }
 
                     @Override
                     public void onComplete() {
                         callback.onComplete();
-
                     }
                 });
-
     }
 
     /**
      * 回调类
      */
-    public abstract class RequestCallback<T>{
+    public abstract class RequestCallback<T> {
 
         private static final String TAG = "RequestCallback";
 
         public void onSubscribe(Disposable d) {
 
-
         }
 
-
         public abstract void onNext(T t);
-
 
         public void onError(Throwable e) {
             //对话框隐藏
             LoadingUtil.hideLoading();
             Log.e(TAG, "onError: ", e);
-
+            getView().showMessage("服务器开小差，请稍候再试");
         }
-
 
         public void onComplete() {
             //对话框隐藏
             LoadingUtil.hideLoading();
         }
     }
-
 }
 
