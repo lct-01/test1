@@ -11,4 +11,7 @@ public interface BaseView {
      */
 
     void showMessage(String message);
+
+
+    void tokenOut();
 }
